@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('cars', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->text('description');
             $table->string('image')->nullable();
 
             $table->unsignedBigInteger('type_id');
@@ -21,7 +22,7 @@ return new class extends Migration
 
             $table->enum('capacity',[2,4,6,8]);
             $table->enum('steering',['manual','automatic','electric']);
-            $table->string('gasoline');
+            $table->integer('gasoline');
 
             $table->decimal('price', 10, 2);
             $table->decimal('sale_price', 10, 2)->nullable();

@@ -19,13 +19,14 @@ class CarFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
+            'description' => $this->faker->text(),
             'image' => 'temp.jpg',
             'type_id' => \App\Models\Type::inRandomOrder()->first()->id,
             'capacity' => $this->faker->randomElement(['2', '4', '6', '8']),
             'steering' => $this->faker->randomElement(['manual', 'automatic', 'electric']),
             'gasoline' => $this->faker->numberBetween(1, 150),
-            'price' => $this->faker->randomFloat(2, 20, 500),
-            'sale_price' => $this->faker->optional(0.5, null)->randomFloat(2, 20, 500),
+            'price' => $this->faker->randomFloat(2, 70, 500),
+            'sale_price' => $this->faker->optional(0.1, null)->randomFloat(2, 20, 60),
         ];
     }
 

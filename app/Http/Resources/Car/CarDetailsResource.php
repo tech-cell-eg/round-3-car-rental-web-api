@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Car;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CarResource extends JsonResource
+class CarDetailsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,9 +17,13 @@ class CarResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'image' => $this->image,
+            'mainImage' => $this->image,
+            'images' => $this->whenLoaded('images', function () {
+                return $this->images->pluck('image')->all();
+            }),
             'type' => $this->whenLoaded('type', $this->type->name),
-            'capacity' => $this->capacity,
+            'gasoline' => $this->gasoline,
+            'seats' => $this->capacity,
             'steering' => $this->steering,
             'price' => $this->price,
             'sale_price' => $this->sale_price,

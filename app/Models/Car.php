@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Car extends Model
 {
     use HasFactory;
-    
+
     // Relations
     public function type()
     {
@@ -28,5 +28,10 @@ class Car extends Model
     public function rentals()
     {
         return $this->hasMany(Rental::class);
+    }
+
+    public function images()
+    {
+        return $this->hasMany(CarImage::class);
     }
 }
