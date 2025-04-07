@@ -38,4 +38,9 @@ class CarsController extends Controller
         return $this->carsService->recommendedCars();
     }
 
+    public function carReviews(Request $request)
+    {
+        return $this->carsService->carReviews($request);
+    }
+
 }

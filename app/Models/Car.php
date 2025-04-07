@@ -9,6 +9,8 @@ class Car extends Model
 {
     use HasFactory;
 
+    protected $withCount = ['reviews'];
+
     // Relations
     public function type()
     {
@@ -24,6 +26,7 @@ class Car extends Model
     {
         return $this->hasMany(Review::class);
     }
+
 
     public function rentals()
     {

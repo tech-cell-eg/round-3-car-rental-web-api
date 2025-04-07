@@ -23,7 +23,7 @@ return new class extends Migration
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
 
             // Star reviews
-            $table->enum('star',[1,2,3,4,5]);
+            $table->enum('rating',[1,2,3,4,5]);
 
             $table->text('description');
 

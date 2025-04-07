@@ -24,6 +24,8 @@ class DatabaseSeeder extends Seeder
             TypeSeeder::class,
             CarSeeder::class,
             CarImagesSeeder::class,
+            ClientSeeder::class,
+            ReviewsSeeder::class,
         ]);
     }
 }

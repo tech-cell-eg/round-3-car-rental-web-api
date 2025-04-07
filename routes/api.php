@@ -25,4 +25,6 @@ Route::prefix('v1')->group(function () {
     Route::get('/car-details',[CarsController::class,'carDetails']);
     Route::get('/recent-cars',[CarsController::class,'recentCars']);
     Route::get('/recommended-cars',[CarsController::class,'recommendedCars']);
+    Route::get('/car-reviews',[CarsController::class,'carReviews']);
+
 });

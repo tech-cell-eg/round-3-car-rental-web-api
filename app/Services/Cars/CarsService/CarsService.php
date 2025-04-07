@@ -4,6 +4,7 @@ namespace App\Services\Cars\CarsService;
 
 use App\Http\Controllers\API\BaseController;
 use App\Http\Resources\Car\CarDetailsResource;
+use App\Http\Resources\Car\CarReviewsResource;
 use App\Http\Resources\Car\CarsResource;
 use App\Models\Car;
 
@@ -25,7 +26,7 @@ class CarsService extends BaseController{
 
     public function carDetails($request)
     {
-        $car = Car::with('type','images')->find($request->input('id'));
+        $car = Car::with('type','images','reviews')->find($request->input('id'));
 
         if(!$car){
             return $this->sendError('Car not found.');
@@ -44,6 +45,20 @@ class CarsService extends BaseController{
     {
         $cars = Car::inRandomOrder()->take(3)->get();
         return $this->sendResponse(CarsResource::collection($cars), 'Recommended Cars');
+    }
+
+    public function carReviews($request)
+    {
+        $car = Car::with(['reviews.client'])->find($request->input('id'));
+
+        if (!$car) {
+            return $this->sendError('Car not found.');
+        }
+
+        return $this->sendResponse(
+            CarReviewsResource::collection($car->reviews),
+            'Car reviews retrieved successfully'
+        );
     }
 
 }

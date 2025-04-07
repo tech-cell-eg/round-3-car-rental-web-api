@@ -27,6 +27,19 @@ class CarDetailsResource extends JsonResource
             'steering' => $this->steering,
             'price' => $this->price,
             'sale_price' => $this->sale_price,
+            'reviews' => $this->whenLoaded('reviews', function () {
+                return [
+                    'total' => $this->reviews->count() ?? 0,
+                    'average_rating' => $this->reviews->isNotEmpty() ? round($this->reviews->avg('rating'), 1) : 0,
+                    'breakdown' => [
+                        '1_star' => $this->reviews->where('rating', 1)->count() ?? 0,
+                        '2_star' => $this->reviews->where('rating', 2)->count() ?? 0,
+                        '3_star' => $this->reviews->where('rating', 3)->count() ?? 0,
+                        '4_star' => $this->reviews->where('rating', 4)->count() ?? 0,
+                        '5_star' => $this->reviews->where('rating', 5)->count() ?? 0,
+                    ]
+                ];
+            }, null),
         ];
     }
 }
