@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\Payment;
 
-use App\Http\Controllers\API\BaseController;
+use App\Http\Controllers\Api\BaseController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Payment\PaymentProcessRequest;
 use App\Services\Payments\CheckoutService;
