@@ -2,7 +2,7 @@
 
 namespace App\Services\Payments;
 
-use App\Http\Controllers\API\BaseController;
+use App\Http\Controllers\Api\BaseController;
 use App\Models\Car;
 use App\Models\Rental;
 use Illuminate\Http\Request;

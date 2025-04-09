@@ -2,7 +2,7 @@
 
 namespace App\Services\Cars\CarsService;
 
-use App\Http\Controllers\API\BaseController;
+use App\Http\Controllers\Api\BaseController;
 use App\Http\Resources\Car\CarDetailsResource;
 use App\Http\Resources\Car\CarReviewsResource;
 use App\Http\Resources\Car\CarsResource;

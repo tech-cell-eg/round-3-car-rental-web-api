@@ -2,7 +2,7 @@
 
 namespace App\Services\Admin;
 
-use App\Http\Controllers\API\BaseController;
+use App\Http\Controllers\Api\BaseController;
 use App\Http\Resources\Rental\RentalResource;
 use App\Http\Resources\Type\TypesResource;
 use App\Models\Rental;
