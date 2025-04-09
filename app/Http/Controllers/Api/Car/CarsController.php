@@ -23,9 +23,9 @@ class CarsController extends Controller
         return $this->carsService->index($request);
     }
 
-    public function carDetails(Request $request)
+    public function carDetails($id)
     {
-        return $this->carsService->carDetails($request);
+        return $this->carsService->carDetails($id);
     }
 
     public function recentCars()
@@ -38,9 +38,9 @@ class CarsController extends Controller
         return $this->carsService->recommendedCars();
     }
 
-    public function carReviews(Request $request)
+    public function carReviews($id)
     {
-        return $this->carsService->carReviews($request);
+        return $this->carsService->carReviews($id);
     }
 
 }

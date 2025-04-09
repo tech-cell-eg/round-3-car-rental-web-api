@@ -24,9 +24,9 @@ class CarsService extends BaseController{
         return $this->sendResponse(CarsResource::collection($cars), 'Cars filtered successfully');
     }
 
-    public function carDetails($request)
+    public function carDetails($id)
     {
-        $car = Car::with('type','images','reviews')->find($request->input('id'));
+        $car = Car::with('type','images','reviews')->find($id);
 
         if(!$car){
             return $this->sendError('Car not found.');
@@ -47,9 +47,9 @@ class CarsService extends BaseController{
         return $this->sendResponse(CarsResource::collection($cars), 'Recommended Cars');
     }
 
-    public function carReviews($request)
+    public function carReviews($id)
     {
-        $car = Car::with(['reviews.client'])->find($request->input('id'));
+        $car = Car::with(['reviews.client'])->find($id);
 
         if (!$car) {
             return $this->sendError('Car not found.');

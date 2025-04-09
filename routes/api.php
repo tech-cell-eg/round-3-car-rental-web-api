@@ -37,10 +37,10 @@ Route::prefix('v1')->group(function () {
 
 
     Route::get('/cars',[CarsController::class,'index']);
-    Route::get('/car-details',[CarsController::class,'carDetails']);
+    Route::get('/car-details/{id}',[CarsController::class,'carDetails']);
     Route::get('/recent-cars',[CarsController::class,'recentCars']);
     Route::get('/recommended-cars',[CarsController::class,'recommendedCars']);
-    Route::get('/car-reviews',[CarsController::class,'carReviews']);
+    Route::get('/car-reviews/{id}',[CarsController::class,'carReviews']);
 
     Route::post('/rent/checkout', [PaymentController::class, 'checkout']);
     Route::post('/rent/webhook', [PaymentController::class, 'handleWebhook']);
