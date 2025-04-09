@@ -32,6 +32,7 @@ class RentalResource extends JsonResource
                 return [
                     'name' => $this->car->name,
                     'image' => $this->car->image,
+                    'type' => $this->car->type->name,
                     // 'image' => asset('storage/' . $this->car->image),
                 ];
             }),

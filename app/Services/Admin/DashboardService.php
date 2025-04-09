@@ -51,7 +51,7 @@ class DashboardService extends BaseController{
 
     public function lastTransactions()
     {
-        $rentals = Rental::latest()->take(4)->get();
+        $rentals = Rental::with('car.type')->latest()->take(4)->get();
 
         if($rentals->isEmpty()){
             return $this->sendError('No data found because there are no cars rented yet.');
