@@ -26,6 +26,8 @@ class DatabaseSeeder extends Seeder
             CarImagesSeeder::class,
             ClientSeeder::class,
             ReviewsSeeder::class,
+            AdminSeeder::class,
+            CitySeeder::class,
         ]);
     }
 }

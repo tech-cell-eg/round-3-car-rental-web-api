@@ -18,21 +18,22 @@ return new class extends Migration
         $table->unsignedBigInteger('car_id');
         $table->foreign('car_id')->references('id')->on('cars')->onDelete('cascade');
 
-        // Client relationship (assuming you have a clients/users table)
-        $table->unsignedBigInteger('client_id');
-        $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
-
         // Client information
         $table->string('client_name');
         $table->string('client_phone');
         $table->string('client_address');
         $table->string('client_city');
 
-        // Rental period
-        $table->dateTime('start_date');
-        $table->dateTime('end_date');
-        $table->dateTime('start_time');
-        $table->dateTime('end_time');
+        // Rental period pick upp
+        $table->foreignId('pick_up_city_id')->constrained('cities');
+        $table->date('pick_up_date');
+        $table->time('pick_up_time');
+
+        // Rental period drop off
+        $table->foreignId('drop_off_city_id')->constrained('cities');
+        $table->date('drop_off_date');
+        $table->time('drop_off_time');
+
         $table->integer('rental_days');
 
         // Payment information
@@ -43,9 +44,10 @@ return new class extends Migration
         $table->decimal('total_price', 10, 2);
 
         // Terms & Marketing emails
-        $table->boolean('terms_accepted')->default(false);
+        $table->boolean('terms_accepted');
         $table->boolean('marketing_emails_accepted')->default(false);
 
+        $table->timestamps();
         });
     }
 

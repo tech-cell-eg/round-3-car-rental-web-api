@@ -15,17 +15,16 @@ class CarReviewsResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'review' => [
-                'client' => $this->whenLoaded('client', function () {
+            'id' => $this->id,
+            'client' => $this->whenLoaded('client', function () {
                     return [
                         'name' => $this->client->name,
                         'job' => $this->client->job,
                     ];
                 }),
-                'rating' => $this->rating,
-                'description' => $this->description,
-                'created_at' => $this->created_at->format('j F Y'),
-            ],
+            'rating' => $this->rating,
+            'description' => $this->description,
+            'created_at' => $this->created_at->format('j F Y'),
         ];
     }
 }
