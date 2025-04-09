@@ -18,7 +18,7 @@ class CheckoutService extends BaseController{
         );
     }
     public function checkout(Request $request){
-        // Stripe::setApiKey(config('stripe.sk'));
+        Stripe::setApiKey(config('stripe.sk'));
 
        // Get car details
         $car = Car::find($request->input('car_id'));
@@ -49,7 +49,7 @@ class CheckoutService extends BaseController{
             return $this->sendError('Car not found.');
         }
 
-        $session = $this->stripe->checkout->sessions->create([
+        $session = \Stripe\Checkout\Session::create([
             'mode' => 'payment',
             'success_url' => route('payment.success'),
             'cancel_url'  => route('payment.failed'),

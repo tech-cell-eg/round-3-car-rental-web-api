@@ -25,6 +25,9 @@ class DashboardService extends BaseController{
                                     ->orderByRaw("DATEDIFF(drop_off_date, ?) DESC", [$now->format('Y-m-d')])
                                     ->orderBy('id', 'DESC')
                                     ->first();
+        if(!$lastRentedDetails){
+            return $this->sendError('not data found because there is not cars rented yet.');
+        }
 
         return $this->sendResponse( new RentalResource($lastRentedDetails), 'Rental details information .');
     }
@@ -49,6 +52,11 @@ class DashboardService extends BaseController{
     public function lastTransaction()
     {
         $rental = Rental::latest()->take(4)->get();
+
+        if(!$rental){
+            return $this->sendError('not data found because there is not cars rented yet.');
+        }
+        
         return $this->sendResponse(  RentalResource::collection($rental), 'Last rental transaction .');
     }
 
