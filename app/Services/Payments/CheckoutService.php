@@ -7,16 +7,7 @@ use App\Models\Car;
 use App\Models\Rental;
 use Illuminate\Http\Request;
 use Stripe\Stripe;
-use Stripe\StripeClient;
 class CheckoutService extends BaseController{
-
-    public $stripe;
-    public function __construct()
-    {
-        $this->stripe = new StripeClient(
-            config('stripe.sk')
-        );
-    }
     public function checkout(Request $request){
         Stripe::setApiKey(config('stripe.sk'));
 

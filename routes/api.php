@@ -25,7 +25,7 @@ Route::prefix('v1')->group(function () {
     Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/details/rental',[DashboardController::class,'rentalDetails']);
         Route::get('/types',[DashboardController::class,'topCarTypes']);
-        Route::get('/rental',[DashboardController::class,'lastTransaction']);
+        Route::get('/rental',[DashboardController::class,'lastTransactions']);
     });
 
 

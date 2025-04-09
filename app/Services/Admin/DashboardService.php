@@ -49,15 +49,15 @@ class DashboardService extends BaseController{
     return $this->sendResponse( TypesResource::collection($topTypes), 'Top five car rental types .');
     }
 
-    public function lastTransaction()
+    public function lastTransactions()
     {
-        $rental = Rental::latest()->take(4)->get();
+        $rentals = Rental::latest()->take(4)->get();
 
-        if(!$rental){
-            return $this->sendError('not data found because there is not cars rented yet.');
+        if($rentals->isEmpty()){
+            return $this->sendError('No data found because there are no cars rented yet.');
         }
-        
-        return $this->sendResponse(  RentalResource::collection($rental), 'Last rental transaction .');
+
+        return $this->sendResponse(RentalResource::collection($rentals), 'Last rental transactions');
     }
 
 }

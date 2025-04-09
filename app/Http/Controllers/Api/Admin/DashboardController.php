@@ -22,8 +22,8 @@ class DashboardController extends Controller
     {
         return $this->dashboardService->topCarTypes();
     }
-    public function lastTransaction()
+    public function lastTransactions()
     {
-        return $this->dashboardService->lastTransaction();
+        return $this->dashboardService->lastTransactions();
     }
 }
