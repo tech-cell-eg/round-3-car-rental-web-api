@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Api\Client;
+namespace App\Http\Requests\Api\Admin;
 
 use App\Http\Requests\Api\Base\ApiRequest;
-use Illuminate\Foundation\Http\FormRequest;
 
-class RegisterRequest extends ApiRequest
+class AdminLoginRequest extends ApiRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,10 +22,8 @@ class RegisterRequest extends ApiRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
-            'job' => 'required|string',
-            'email' => 'required|email|unique:clients,email',
-            'password' => 'required|min:8|confirmed|regex:/^(?=.*[a-zA-Z])(?=.*\d).+$/',
+            'email' => 'required|exists:users,email',
+            'password' => 'required',
         ];
     }
 }

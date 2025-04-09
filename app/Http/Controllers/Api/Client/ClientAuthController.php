@@ -23,10 +23,13 @@ class ClientAuthController extends BaseController
         $client = Client::create($input);
 
         $success['token'] = $client->createToken('Client')->plainTextToken;
-        $success['client']['name'] = $client->pluck('name');
-        $success['client']['email'] = $client->pluck('email');
+        $success['client'] = [
+            'name' => $client->name,
+            'job' => $client->job,
+            'email' => $client->email,
+        ];
 
-        return $this->sendResponse($success, 'Client register successfully.');
+        return $this->sendResponse($success, 'Client registered successfully.');
     }
 
     /**
