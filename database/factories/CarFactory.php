@@ -20,7 +20,7 @@ class CarFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'description' => $this->faker->text(),
-            'image' => 'temp.jpg',
+            'image' => $this->faker->randomElement(['car1.jpg', 'car2.jpg', 'car3.jpg']),
             'type_id' => \App\Models\Type::inRandomOrder()->first()->id,
             'capacity' => $this->faker->randomElement(['2', '4', '6', '8']),
             'steering' => $this->faker->randomElement(['manual', 'automatic', 'electric']),
@@ -30,17 +30,4 @@ class CarFactory extends Factory
         ];
     }
 
-    // public function withImage()
-    // {
-    //     return $this->afterCreating(function (\App\Models\Car $car) {
-    //         // Generate a fake image and store it
-    //         $imageUrl = "https://picsum.photos/800/600?random=" . $car->id;
-    //         $imageContents = file_get_contents($imageUrl);
-
-    //         $imagePath = 'cars/' . $car->id . '.jpg';
-    //         Storage::put('public/' . $imagePath, $imageContents);
-
-    //         $car->update(['image' => $imagePath]);
-    //     });
-    // }
 }

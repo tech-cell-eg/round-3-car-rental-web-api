@@ -18,7 +18,7 @@ class CarImagesSeeder extends Seeder
         foreach($cars as $car){
             for($i =1; $i <=3; $i++){
                 CarImage::create([
-                    'image' => 'temp' . $i . '.png',
+                    'image' => 'car' . $i . '.jpg',
                     'car_id' =>$car->id,
                 ]);
             }

@@ -4,6 +4,7 @@ namespace App\Http\Resources\Car;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Storage;
 
 class CarsResource extends JsonResource
 {
@@ -17,7 +18,7 @@ class CarsResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'image' => $this->image,
+            'image' => $this->image ? url(Storage::url('cars/' . $this->image)) : null,
             'type' => $this->whenLoaded('type', $this->type->name),
             'gasoline' => $this->gasoline,
             'seats' => $this->capacity,
