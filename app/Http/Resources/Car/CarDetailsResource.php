@@ -18,7 +18,7 @@ class CarDetailsResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'mainImage' => $this->image,
+            'mainImage' => $this->image ? url(Storage::url('cars/' . $this->image)) : null,
             'images' => $this->whenLoaded('images', function () {
                 return $this->images->map(function ($img) {
                     return url(Storage::url('cars/' . $img->image));
