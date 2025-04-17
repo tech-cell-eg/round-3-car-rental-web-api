@@ -23,26 +23,49 @@ class PaymentProcessRequest extends ApiRequest
     {
         return [
             'car_id' => 'required|integer|exists:cars,id',
-            'client_name' => 'required|string|max:255',
-            'client_phone' => 'required|string|max:20',
-            'client_address' => 'required|string|max:500',
-            'client_city' => 'required|string|max:100',
-            'pick_up_city_id' => 'required|exists:cities,id',
-            'pick_up_date' => [
+            'name' => 'required|string|max:255',
+            'phone' => 'required|string|max:20',
+            'address' => 'required|string|max:500',
+            'city' => 'required|string|max:100',
+            'pickUpLocation' => 'required|exists:cities,id',
+            'pickUpDate' => [
                 'required',
                 'date_format:d/m/Y',
                 'after_or_equal:' . now()->format('d/m/Y'),
                 'before_or_equal:drop_off_date'
             ],
-            'pick_up_time' => 'required|date_format:H:i',
-            'drop_off_city_id' => 'required|exists:cities,id',
-            'drop_off_date' => [
+            'pickUpTime' => 'required|date_format:H:i',
+            'dropOffLocation' => 'required|exists:cities,id',
+            'dropOffDate' => [
                 'required',
                 'date_format:d/m/Y',
                 'after_or_equal:' . now()->addDay()->format('d/m/Y'),
             ],
-            'drop_off_time' => 'required|date_format:H:i|after:pick_up_time',
-            'terms_accepted' => 'required|accepted',
+            'dropOffTime' => 'required|date_format:H:i|after:pick_up_time',
+            'cardNumber' => 'required|digits:16|numeric',
+            'expiryDate' => [
+                'required',
+                function ($attribute, $value, $fail) {
+                    if (!preg_match('/^([0-9]{1,2})[\/\-]?([0-9]{2})$/', $value, $matches)) {
+                        $fail('The expiry date format is invalid.');
+                        return;
+                    }
+
+                    $month = str_pad($matches[1], 2, '0', STR_PAD_LEFT);
+                    $year = 2000 + $matches[2];
+
+                    if ($month < 1 || $month > 12) {
+                        $fail('Invalid month.');
+                    }
+
+                    if ($year < date('Y') || ($year == date('Y') && $month < date('m'))) {
+                        $fail('The card has expired.');
+                    }
+                },
+            ],
+            'cardHolder' => 'required|string|min:6',
+            'cvc' => 'required|digits:3',
+            'termsAccepted' => 'required|accepted',
         ];
     }
 }

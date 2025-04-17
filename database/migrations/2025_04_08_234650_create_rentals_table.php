@@ -19,32 +19,38 @@ return new class extends Migration
         $table->foreign('car_id')->references('id')->on('cars')->onDelete('cascade');
 
         // Client information
-        $table->string('client_name');
-        $table->string('client_phone');
-        $table->string('client_address');
-        $table->string('client_city');
+        $table->string('name');
+        $table->string('phone');
+        $table->string('address');
+        $table->string('city');
 
         // Rental period pick upp
-        $table->foreignId('pick_up_city_id')->constrained('cities');
-        $table->date('pick_up_date');
-        $table->time('pick_up_time');
+        $table->foreignId('pickUpLocation')->constrained('cities');
+        $table->date('pickUpDate');
+        $table->time('pickUpTime');
 
         // Rental period drop off
-        $table->foreignId('drop_off_city_id')->constrained('cities');
-        $table->date('drop_off_date');
-        $table->time('drop_off_time');
+        $table->foreignId('dropOffLocation')->constrained('cities');
+        $table->date('dropOffDate');
+        $table->time('dropOffTime');
 
         $table->integer('rental_days');
 
         // Payment information
-        $table->enum('payment_method', ['CashCard', 'PayPal', 'Bitcoin']);
+        $table->enum('paymentMethod', ['CashCard', 'PayPal', 'Bitcoin']);
+        $table->bigInteger('cardNumber');
+        $table->string('expiryDate', 7);
+        $table->string('cardHolder');
+        $table->integer('cvc');
         $table->string('payment_reference')->nullable();
+
+        // Price Information
         $table->decimal('subtotal', 10, 2);
         $table->decimal('tax', 10, 2)->default(0.00);
         $table->decimal('total_price', 10, 2);
 
         // Terms & Marketing emails
-        $table->boolean('terms_accepted');
+        $table->boolean('termsAccepted');
         $table->boolean('marketing_emails_accepted')->default(false);
 
         $table->timestamps();

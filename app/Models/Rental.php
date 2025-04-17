@@ -15,12 +15,12 @@ class Rental extends Model
 
     public function pickupCity()
     {
-        return $this->belongsTo(City::class, 'pick_up_city_id');
+        return $this->belongsTo(City::class, 'pickUpLocation');
     }
 
     public function dropoffCity()
     {
-        return $this->belongsTo(City::class, 'drop_off_city_id');
+        return $this->belongsTo(City::class, 'dropOffLocation');
     }
 
     public function client()
