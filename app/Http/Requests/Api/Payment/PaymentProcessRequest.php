@@ -27,7 +27,7 @@ class PaymentProcessRequest extends ApiRequest
             'phone' => 'required|string|max:20',
             'address' => 'required|string|max:500',
             'city' => 'required|string|max:100',
-            'pickUpLocation' => 'required|exists:cities,id',
+            'pickUpLocation' => 'required|string',
             'pickUpDate' => [
                 'required',
                 'date_format:d/m/Y',
@@ -35,7 +35,7 @@ class PaymentProcessRequest extends ApiRequest
                 'before_or_equal:drop_off_date'
             ],
             'pickUpTime' => 'required|date_format:H:i',
-            'dropOffLocation' => 'required|exists:cities,id',
+            'dropOffLocation' => 'required|string',
             'dropOffDate' => [
                 'required',
                 'date_format:d/m/Y',

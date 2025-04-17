@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Stripe\Stripe;
 class CheckoutService extends BaseController{
     public function checkout(Request $request){
-        Stripe::setApiKey(config('stripe.sk'));
+        // Stripe::setApiKey(config('stripe.sk'));
 
        // Get car details
         $car = Car::find($request->input('car_id'));
@@ -41,58 +41,55 @@ class CheckoutService extends BaseController{
             return $this->sendError('Car not found.');
         }
 
-        $session = \Stripe\Checkout\Session::create([
-            'mode' => 'payment',
-            'success_url' => route('payment.success'),
-            'cancel_url'  => route('payment.failed'),
-            'line_items'  => [
-                [
-                    'price_data' => [
-                        "currency" => "USD",
-                        'product_data' => [
-                            "name" => $car_name,
-                            'description' => 'There is the car that u want to rent it .',
-                        ],
-                        'unit_amount'  => $total*100,
-                    ],
-                    'quantity'   => 1,
-                ],
-            ],
-        ]);
+        // $session = \Stripe\Checkout\Session::create([
+        //     'mode' => 'payment',
+        //     'success_url' => route('payment.success'),
+        //     'cancel_url'  => route('payment.failed'),
+        //     'line_items'  => [
+        //         [
+        //             'price_data' => [
+        //                 "currency" => "USD",
+        //                 'product_data' => [
+        //                     "name" => $car_name,
+        //                     'description' => 'There is the car that u want to rent it .',
+        //                 ],
+        //                 'unit_amount'  => $total*100,
+        //             ],
+        //             'quantity'   => 1,
+        //         ],
+        //     ],
+        // ]);
 
-        $data = $session->url;
+        // $data = $session->url;
 
-        if($session){
+        // Prepare rental data
+        $rentalData = [
+            'car_id' => $request->input('car_id'),
+            'name' => $request->input('name'),
+            'phone' => $request->input('phone'),
+            'city' => $request->input('address'),
+            'address' => $request->input('city'),
+            'pickUpLocation' => $request->input('pickUpLocation'),
+            'dropOffLocation' => $request->input('dropOffLocation'),
+            'pickUpDate' => $pickupDate,
+            'dropOffDate' => $dropOffDate,
+            'pickUpTime' => $request->input('pickUpTime'),
+            'dropOffTime' => $request->input('dropOffTime'),
+            'rental_days' => $rentalDays,
+            'cardNumber' => $request->input('cardNumber'),
+            'expiryDate' => $request->input('expiryDate'),
+            'cardHolder' => $request->input('cardHolder'),
+            'cvc' => $request->input('cvc'),
+            'paymentMethod' => "CashCard",
+            'subtotal' => $subTotal,
+            'total_price' => $total,
+            'termsAccepted' => $request->boolean('termsAccepted'),
+        ];
 
-            // Prepare rental data
-            $rentalData = [
-                'car_id' => $request->input('car_id'),
-                'name' => $request->input('name'),
-                'phone' => $request->input('phone'),
-                'city' => $request->input('address'),
-                'address' => $request->input('city'),
-                'pickUpLocation' => $request->input('pickUpLocation'),
-                'dropOffLocation' => $request->input('dropOffLocation'),
-                'pickUpDate' => $pickupDate,
-                'dropOffDate' => $dropOffDate,
-                'pickUpTime' => $request->input('pickUpTime'),
-                'dropOffTime' => $request->input('dropOffTime'),
-                'rental_days' => $rentalDays,
-                'cardNumber' => $request->input('cardNumber'),
-                'expiryDate' => $request->input('expiryDate'),
-                'cardHolder' => $request->input('cardHolder'),
-                'cvc' => $request->input('cvc'),
-                'paymentMethod' => "CashCard",
-                'subtotal' => $subTotal,
-                'total_price' => $total,
-                'termsAccepted' => $request->boolean('termsAccepted'),
-            ];
+        // Create rental record
+        $rental = Rental::create($rentalData);
 
-            // Create rental record
-            $rental = Rental::create($rentalData);
-
-            return $this->sendResponse(null,'Payment done successfully');
-        }
+        return $this->sendResponse(null,'Payment done successfully');
 
     }
 }

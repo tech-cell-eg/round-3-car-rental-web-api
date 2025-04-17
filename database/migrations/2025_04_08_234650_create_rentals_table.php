@@ -25,12 +25,12 @@ return new class extends Migration
         $table->string('city');
 
         // Rental period pick upp
-        $table->foreignId('pickUpLocation')->constrained('cities');
+        $table->string('pickUpLocation');
         $table->date('pickUpDate');
         $table->time('pickUpTime');
 
         // Rental period drop off
-        $table->foreignId('dropOffLocation')->constrained('cities');
+        $table->string('dropOffLocation');
         $table->date('dropOffDate');
         $table->time('dropOffTime');
 
