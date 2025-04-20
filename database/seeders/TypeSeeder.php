@@ -13,6 +13,19 @@ class TypeSeeder extends Seeder
      */
     public function run(): void
     {
-        Type::factory()->count(10)->create();
+        $types = [
+            'Sport',
+            'SUV',
+            'MPV',
+            'Sedan',
+            'Coupe',
+            'Hatchback'
+        ];
+
+        foreach($types as $type){
+            Type::create([
+                'name' => $type
+            ]);
+        }
     }
 }

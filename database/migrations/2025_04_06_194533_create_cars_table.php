@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreign('type_id')->references('id')->on('types')->onDelete('cascade');
 
             $table->enum('capacity',[2,4,6,8]);
-            $table->enum('steering',['manual','automatic','electric']);
+            $table->enum('steering',['Manual','Automatic','Electric']);
             $table->integer('gasoline');
 
             $table->decimal('price', 10, 2);

@@ -15,11 +15,18 @@ class CarImagesSeeder extends Seeder
     public function run(): void
     {
         $cars = Car::all();
-        foreach($cars as $car){
-            for($i =1; $i <=3; $i++){
+
+        foreach($cars as $car) {
+            $images = [
+                $car->image,
+                'car_details1.png',
+                'car_details2.png'
+            ];
+
+            foreach($images as $index => $image) {
                 CarImage::create([
-                    'image' => 'car' . $i . '.jpg',
-                    'car_id' =>$car->id,
+                    'image' => $image,
+                    'car_id' => $car->id,
                 ]);
             }
         }
