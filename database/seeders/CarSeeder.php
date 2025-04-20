@@ -26,7 +26,7 @@ class CarSeeder extends Seeder
                 'steering' => 'Manual',
                 'gasoline' => rand(50,150),
                 'price' => number_format(rand(7000, 50000) / 100, 2, '.', ''),
-                'sale_price' => $faker->optional(0.1, null)->randomFloat(2, 20, 60),
+                'sale_price' => $faker->optional(0.4, null)->randomFloat(2, 20, 60),
             ],
             'car2' => [
                 'name' => 'Nissan GT - R',
@@ -37,7 +37,7 @@ class CarSeeder extends Seeder
                 'steering' => 'Manual',
                 'gasoline' => rand(50,150),
                 'price' => number_format(rand(7000, 50000) / 100, 2, '.', ''),
-                'sale_price' => $faker->optional(0.1, null)->randomFloat(2, 20, 60),
+                'sale_price' => $faker->optional(0.4, null)->randomFloat(2, 20, 60),
             ],
             'car3' => [
                 'name' => 'Rolls-Royce',
@@ -48,7 +48,7 @@ class CarSeeder extends Seeder
                 'steering' => 'Manual',
                 'gasoline' => rand(50,150),
                 'price' => number_format(rand(7000, 50000) / 100, 2, '.', ''),
-                'sale_price' => $faker->optional(0.1, null)->randomFloat(2, 20, 60),
+                'sale_price' => $faker->optional(0.4, null)->randomFloat(2, 20, 60),
             ],
             'car4' => [
                 'name' => 'All New Rush',
@@ -59,7 +59,7 @@ class CarSeeder extends Seeder
                 'steering' => 'Manual',
                 'gasoline' => rand(50,150),
                 'price' => number_format(rand(7000, 50000) / 100, 2, '.', ''),
-                'sale_price' => $faker->optional(0.1, null)->randomFloat(2, 20, 60),
+                'sale_price' => $faker->optional(0.4, null)->randomFloat(2, 20, 60),
             ],
             'car5' => [
                 'name' => 'CR  - V',
@@ -70,7 +70,7 @@ class CarSeeder extends Seeder
                 'steering' => 'Manual',
                 'gasoline' => rand(50,150),
                 'price' => number_format(rand(7000, 50000) / 100, 2, '.', ''),
-                'sale_price' => $faker->optional(0.1, null)->randomFloat(2, 20, 60),
+                'sale_price' => $faker->optional(0.4, null)->randomFloat(2, 20, 60),
             ],
             'car6' => [
                 'name' => 'All New Terios',
@@ -81,7 +81,7 @@ class CarSeeder extends Seeder
                 'steering' => 'Manual',
                 'gasoline' => rand(50,150),
                 'price' => number_format(rand(7000, 50000) / 100, 2, '.', ''),
-                'sale_price' => $faker->optional(0.1, null)->randomFloat(2, 20, 60),
+                'sale_price' => $faker->optional(0.4, null)->randomFloat(2, 20, 60),
             ],
             'car7' => [
                 'name' => 'MG ZX Exclusice',
@@ -92,7 +92,7 @@ class CarSeeder extends Seeder
                 'steering' => 'Electric',
                 'gasoline' => rand(50,150),
                 'price' => number_format(rand(7000, 50000) / 100, 2, '.', ''),
-                'sale_price' => $faker->optional(0.1, null)->randomFloat(2, 20, 60),
+                'sale_price' => $faker->optional(0.4, null)->randomFloat(2, 20, 60),
             ],
             'car8' => [
                 'name' => 'New MG ZS',
@@ -103,7 +103,7 @@ class CarSeeder extends Seeder
                 'steering' => 'Manual',
                 'gasoline' => rand(50,150),
                 'price' => number_format(rand(7000, 50000) / 100, 2, '.', ''),
-                'sale_price' => $faker->optional(0.1, null)->randomFloat(2, 20, 60),
+                'sale_price' => $faker->optional(0.4, null)->randomFloat(2, 20, 60),
             ],
             'car9' => [
                 'name' => 'MG ZX Excite',
@@ -114,7 +114,7 @@ class CarSeeder extends Seeder
                 'steering' => 'Electric',
                 'gasoline' => rand(50,150),
                 'price' => number_format(rand(7000, 50000) / 100, 2, '.', ''),
-                'sale_price' => $faker->optional(0.1, null)->randomFloat(2, 20, 60),
+                'sale_price' => $faker->optional(0.4, null)->randomFloat(2, 20, 60),
             ],
         ];
 
